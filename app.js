@@ -77,16 +77,12 @@ exports.lambdaHandler = async (event, context) => {
 async function resize_image(img_buffer,size) {
     
     try {
-        const subsegment = segment.addNewSubsegment('sharp_resize');
-
         var img_corp_buffer = await sharp(img_buffer)
             .resize(size, size, {
                 withoutEnlargement: true
             })
             .jpeg()
             .toBuffer()
-
-        subsegment.close();
     } catch (error) {
         console.error("Unable to resize image");
         console.error(error);
