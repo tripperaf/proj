@@ -35,7 +35,7 @@ Please, make Infra as Code because I heard that it's cool to do so.
 
 You can also make some diagrams if needed.
 
-## Livrables
+Technically speaking, we need to get:
 
 - Application URL
 - URL of the resized images
