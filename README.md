@@ -7,23 +7,39 @@ __Feel free to apply! Drop us a line with your Linkedin/Github/Twitter/AnySocial
 
 ## Summary
 
-The purpose of the test is to reproduce one of our typical use case on the DevOps part of Aircall: __deployment__!
+An intern in our team has developped an application to resize images. It's working fine.
 
-The story is the following:
+Unfortunatly, he left the company and we have no documentation or no insights at all about
+what he did.
 
-Our backend team just developed a new service in order to resize contacts pictures to avoid downloading heavy images every time we open a contact card.
-
-### What we want ?
+We just have the code.
 
 With the following request to the application, the image is resized, stored and accessible from s3.
 
 ```
 curl --location --request POST 'http://resize.aircall.com/image' \
 --form 'file=@img.jpg' \
---form 's3Bucket=test-aricall'
+--form 's3Bucket=test-aircall'
 ```
 
-The provided code is working. It has to be served by lambda and accessible from an http endpoint ex : (https://resize.aircall.com/image)
+The provided code is working. 
+
+It seems that our intern was using something called Lambda. Don't know what is it.
+
+
+
+## What we want ?
+Could you please take this code, and deploy it on AWS in a cool way?
+
+Please, make Infra as Code because I heard that it's cool to do so.
+
+You can also make some diagrams if needed.
+
+## Livrables
+
+- Application URL
+- URL of the resized images
+- GitHub repo
 
 ## Good to know
 
@@ -36,3 +52,6 @@ The provided code is working. It has to be served by lambda and accessible from 
 - tracing
 - deployment framework
 - CI/CD
+- auth
+
+Good luck !
