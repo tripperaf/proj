@@ -19,7 +19,7 @@ With the following request to the application, the image is resized, stored and 
 ```
 curl --location --request POST 'http://resize.aircall.com/image' \
 --form 'file=@img.jpg' \
---form 's3Bucket=test-aircall'
+--form 's3Key=img.jpg'
 ```
 
 The provided code is working. 
