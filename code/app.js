@@ -51,7 +51,7 @@ exports.lambdaHandler = async (event, context) => {
 
         response = {
             'statusCode': 200,
-            'body': "ok",
+            'body': 'Resized Image URL : https://' + S3_BUCKET + '.s3.amazonaws.com/' + s3_key,
             'headers': {
                 'Content-Type': 'application/text',
                 'Access-Control-Allow-Origin': '*'
@@ -82,7 +82,7 @@ async function resize_image(img_buffer,size) {
                 withoutEnlargement: true
             })
             .jpeg()
-            .toBuffer()
+            .toBuffer();
     } catch (error) {
         console.error("Unable to resize image");
         console.error(error);
