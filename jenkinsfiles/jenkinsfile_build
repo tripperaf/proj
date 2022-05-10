@@ -17,14 +17,15 @@ pipeline {
   // jdk 'jdk8'
  }
 */
-/*
+
  environment {
-   jenkins_git_cred_id= "${jenkins_credential_id}"
-   project = "avatar-file-dataloader"
+   project = "aircall"
+   project_directory = "code"
    tag = "${BUILD_NUMBER}"
-   deploy_version = "avatar-file-dataloader-${tag}.jar"
+   deploy_version = "function-${tag}.zip"
+
  }
-*/
+
   stages {
 
     stage ('Clean Workspace') {
@@ -34,14 +35,19 @@ pipeline {
       }
     }
 
-/*
-    stage ('mvn build') {
+
+    stage ('npm build and package') {
       steps {
-        sh 'mvn install -Dmaven.test.skip=true'
-        sh 'ls'
+          dir("${project_directory}"){
+                sh 'npm install'
+                sh 'ls'
+                sh "zip -r ${deploy_version} ./"
+                sh "ls -l ${deploy_version}"
+          }
       }
     }
 
+/*
     stage ('S3 Deploy') {
       steps {
         sh 'mv target/avatar-file-data-loader* avatar-file-dataloader-${tag}.jar'
