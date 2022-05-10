@@ -1,0 +1,67 @@
+pipeline {
+
+  agent any
+
+  /*
+    This Jenkinsfile is for build and deploy
+    Expected variables:
+    s3_bucket: s3 bucket to store artifacts
+    environment: environment name to deploy
+    region: aws region
+    lambda_deploy: whether to deploy lambda or not
+    lambda_job_name: jenkins job to deploy
+  */
+/*
+ tools {
+   maven 'maven-3.5.4'
+  // jdk 'jdk8'
+ }
+*/
+/*
+ environment {
+   jenkins_git_cred_id= "${jenkins_credential_id}"
+   project = "avatar-file-dataloader"
+   tag = "${BUILD_NUMBER}"
+   deploy_version = "avatar-file-dataloader-${tag}.jar"
+ }
+*/
+  stages {
+
+    stage ('Clean Workspace') {
+      steps{
+        step([$class: 'WsCleanup'])
+        checkout scm
+      }
+    }
+
+/*
+    stage ('mvn build') {
+      steps {
+        sh 'mvn install -Dmaven.test.skip=true'
+        sh 'ls'
+      }
+    }
+
+    stage ('S3 Deploy') {
+      steps {
+        sh 'mv target/avatar-file-data-loader* avatar-file-dataloader-${tag}.jar'
+        sh 'aws s3 cp avatar-file-dataloader-${tag}.jar s3://${s3_bucket}/${project}/${environment}/'
+        sh 'echo "==================deploy version: avatar-file-dataloader-${tag}.jar=============="'
+      }
+    }
+
+    stage ('Deploy') {
+      when {
+        expression { params.lambda_deploy == 'true' }
+      }
+      steps {
+        build (job: "${lambda_job_name}", wait: true,
+        parameters: [
+          string(name: 'environment', value: environment),
+          string(name: 'region', value: region),
+          string(name: 'lambda_s3_key', value: deploy_version),
+        ])
+      }
+    }*/
+  }
+}
