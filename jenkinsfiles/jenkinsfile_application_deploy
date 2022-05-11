@@ -25,7 +25,7 @@ pipeline {
     stage('TF Install') {
       steps {
         dir(project_dir) {
-          sh 'tfenv install'
+          sh '/var/lib/jenkins/.tfenv/bin/tfenv install'
         }
       }      
     }
