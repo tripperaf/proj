@@ -3,7 +3,7 @@ output "base_url" {
 }
 
 output "api_name" {
-  value = "${var.project}-apigateway-${var.env}"
+  value = "${var.project}-apigateway-${var.environment}"
 }
 
 output "api_arn" {
