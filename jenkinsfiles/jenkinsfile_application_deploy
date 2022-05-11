@@ -52,6 +52,7 @@ pipeline {
           sh '${tf_command} plan \
             -var-file="${tf_vars_file}" \
             -var region=${region} -var environment=${environment} \
+            -var lambda_s3_key=${lambda_s3_key} \
             -out ${tf_plan_file}'
         }
       }      

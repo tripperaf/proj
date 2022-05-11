@@ -16,4 +16,3 @@ api_gateway_authorizer                            = "aircall-authorization"
 cognito_allowed_oauth_scopes                      = "aircall/image"
 
 #Lambda
-lambda_s3_key                                     = "function4.zip"
