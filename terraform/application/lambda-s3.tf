@@ -73,3 +73,14 @@ module "security" {
 
  depends_on = [ aws_s3_bucket.output_bucket  ]
 }
+
+resource "aws_lambda_permission" "lambda_permission" {
+  statement_id  = "AllowMyDemoAPIInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = module.lambda.lambda_function_name
+  principal     = "apigateway.amazonaws.com"
+
+  # The /*/*/* part allows invocation from any stage, method and resource path
+  # within API Gateway REST API.
+  source_arn = "${module.APIGateway.api_arn}/*/*/*"
+}
