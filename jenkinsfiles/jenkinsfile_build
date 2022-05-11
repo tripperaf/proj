@@ -2,29 +2,14 @@ pipeline {
 
   agent any
 
-  /*
-    This Jenkinsfile is for build and deploy
-    Expected variables:
-    s3_bucket: s3 bucket to store artifacts
-    environment: environment name to deploy
-    region: aws region
-    lambda_deploy: whether to deploy lambda or not
-    lambda_job_name: jenkins job to deploy
-  */
-/*
- tools {
-   maven 'maven-3.5.4'
-  // jdk 'jdk8'
- }
-*/
-
- environment {
+  environment {
    project = "aircall"
    project_directory = "code"
    tag = "${BUILD_NUMBER}"
    deploy_version = "function-${tag}.zip"
+   s3_bucket = "aircall-artifacts"
 
- }
+  }
 
   stages {
 
@@ -47,27 +32,29 @@ pipeline {
       }
     }
 
-/*
-    stage ('S3 Deploy') {
+    stage ('S3 Copy Artifacts ') {
+      when {
+        expression { params.push_artifacts == 'yes' }
+      }
       steps {
-        sh 'mv target/avatar-file-data-loader* avatar-file-dataloader-${tag}.jar'
-        sh 'aws s3 cp avatar-file-dataloader-${tag}.jar s3://${s3_bucket}/${project}/${environment}/'
-        sh 'echo "==================deploy version: avatar-file-dataloader-${tag}.jar=============="'
+        dir("${project_directory}"){
+            sh "aws s3 cp ${deploy_version} s3://${s3_bucket}/" 
+        }
       }
     }
 
     stage ('Deploy') {
       when {
-        expression { params.lambda_deploy == 'true' }
+        expression { params.application_deploy == 'yes' }
       }
       steps {
-        build (job: "${lambda_job_name}", wait: true,
+        build (job: "${application_deploy_jobname}", wait: true,
         parameters: [
           string(name: 'environment', value: environment),
           string(name: 'region', value: region),
           string(name: 'lambda_s3_key', value: deploy_version),
         ])
       }
-    }*/
+    }
   }
 }
