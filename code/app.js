@@ -11,12 +11,12 @@ let response;
  * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
  * @param {Object} event - API Gateway Lambda Proxy Input Format
  *
- * Context doc: https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html 
+ * Context doc: https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html
  * @param {Object} context
  *
  * Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
- * 
+ *
  */
 exports.lambdaHandler = async (event, context) => {
 
@@ -28,7 +28,7 @@ exports.lambdaHandler = async (event, context) => {
     var s3_key;
 
     try {
-        if (event.path && event.path == "/image") {
+        if (event.path && (event.path == "/image" || event.path == "/image-auth") ) {
             const { body } = await parser.parse(event);
             s3_key = body.s3Key;
             img_buffer = body.files[0].file;
@@ -51,7 +51,7 @@ exports.lambdaHandler = async (event, context) => {
 
         response = {
             'statusCode': 200,
-            'body': 'Resized Image URL : https://' + S3_BUCKET + '.s3.amazonaws.com/' + s3_key,
+            'body': 'Resized Images URL are : https://' + S3_BUCKET + '.s3.amazonaws.com/' + s3_key + ', https://' + S3_BUCKET + '.s3.amazonaws.com/' + s3_key + '_200, https://' + S3_BUCKET + '.s3.amazonaws.com/' + s3_key + '_75',
             'headers': {
                 'Content-Type': 'application/text',
                 'Access-Control-Allow-Origin': '*'
@@ -75,7 +75,7 @@ exports.lambdaHandler = async (event, context) => {
 };
 
 async function resize_image(img_buffer,size) {
-    
+
     try {
         var img_corp_buffer = await sharp(img_buffer)
             .resize(size, size, {
@@ -103,7 +103,7 @@ async function send_image(crop_img_buffer,s3_bucket,s3_key){
         };
         await s3.putObject(params).promise();
         console.log("image : ", s3_key," sent to : ",s3_bucket)
-    } catch (error) {        
+    } catch (error) {
         console.error("Unable to upload : ",s3_key," to bucket : ",s3_bucket);
         throw Error(error);
     }
