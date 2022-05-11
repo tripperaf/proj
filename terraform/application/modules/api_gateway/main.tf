@@ -56,10 +56,11 @@ resource "aws_api_gateway_method_settings" "api_settings" {
     throttling_rate_limit  = var.api_throttling_rate_limit
   }
 }
-
+/*
 resource "aws_api_gateway_authorizer" "cognito_oauth" {
   name                   = var.api_gateway_authorizer
   rest_api_id            = aws_api_gateway_rest_api.api.id
   type                   = "COGNITO_USER_POOLS" 
   provider_arns          = var.provider_arns
 }
+*/

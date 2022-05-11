@@ -41,11 +41,11 @@ variable "endpoint_type" {
 }
 
 #Cognito authorization
-
+/*
 variable "api_gateway_authorizer" {
   description = "API Gateway Cognito Authorizer Name"
 }
-
+*/
 variable "provider_arns" {
   description = "ARN for userpool"
   default = []

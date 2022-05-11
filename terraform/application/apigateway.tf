@@ -22,8 +22,8 @@ module "APIGateway" {
   api_throttling_burst_limit                 = var.api_throttling_burst_limit
   api_throttling_rate_limit                  = var.api_throttling_rate_limit
   endpoint_type                              = var.endpoint_configuration_type
-  provider_arns                              = [module.user_pool.user_pool_arn]
-  api_gateway_authorizer                     = var.api_gateway_authorizer
+  //provider_arns                              = [module.user_pool.user_pool_arn]
+  //api_gateway_authorizer                     = var.api_gateway_authorizer
   api_gateway_name                            = var.api_gateway_name
   depends_on = [
     module.user_pool,
