@@ -7,7 +7,7 @@ pipeline {
    project_directory = "code"
    tag = "${BUILD_NUMBER}"
    deploy_version = "function-${tag}.zip"
-   s3_bucket = "aircall-artifacts"
+   s3_bucket = "${project}-code-${environment}"
 
   }
 
