@@ -1,9 +1,12 @@
 
-project                                            = "aircall"
-cost_category                                      = "aircall"
-environment                                        = "dev"
+project                                           = "aircall"
+cost_category                                     = "aircall"
+environment                                       = "dev"
+
 #Cognito
-allowed_oauth_flow                                 = ["client_credentials"]
+allowed_oauth_flow                                = ["client_credentials"]
+identifier                                        = "aircall"
+scope_name                                        = "image"
 
 #API
 api_logging_level                                 = "OFF"
@@ -16,3 +19,4 @@ api_gateway_authorizer                            = "aircall-authorization"
 cognito_allowed_oauth_scopes                      = "aircall/image"
 
 #Lambda
+lambda_memory_size                                = "256"

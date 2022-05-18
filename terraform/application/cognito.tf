@@ -11,4 +11,6 @@ module "app_client"{
   environment                    = var.environment
   allowed_oauth_flow             = var.allowed_oauth_flow
   user_pool_id                   = module.user_pool.user_pool_id
+  identifier                     = var.identifier
+  scope_name                     = var.scope_name
 }

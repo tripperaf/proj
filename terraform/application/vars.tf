@@ -20,6 +20,16 @@ variable "allowed_oauth_flow" {
   description = "aauth flow for the app client"
 }
 
+variable "identifier" {
+  description = "scope identifier"
+  default = ""
+}
+
+variable "scope_name" {
+  description = "scope name"
+  default = ""
+}
+
 #API Gateway
 
 variable "logging_level" {

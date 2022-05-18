@@ -49,22 +49,21 @@ variable "prevent_user_existence_errors" {
   default = "ENABLED"
 }
 
-variable "aircall_identifier" {
-  description = "aircall scope identifier"
-  default = "aircall"
+variable "identifier" {
+  description = "scope identifier"
+  default = ""
 }
 
-variable "aircall_scope_name" {
-  description = "aircall scope name"
-  default = "image"
+variable "scope_name" {
+  description = "scope name"
+  default = ""
 }
 
-variable "aircall_scope_description" {
-  description = "aircall scope description"
+variable "scope_description" {
+  description = "scope description"
   default = "custom scope for aircall service"
 }
 
 variable "allowed_oauth_scopes" {
   description = "allowed oauth scopes"
-  default = ["aircall/image"]
 }
