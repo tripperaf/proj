@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "",
+    "version" : "2022-05-10T15:59:46Z",
     "title" : "${api_gateway_name}"
   },
   "schemes" : [ "https" ],
