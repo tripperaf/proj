@@ -31,11 +31,11 @@ variable "scope_name" {
 }
 
 #API Gateway
-
+/*
 variable "logging_level" {
   description = "logging_level"
 }
-
+*/
 variable "api_throttling_burst_limit" {
   description = "api_throttling_burst_limit"
 }
