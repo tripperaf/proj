@@ -66,4 +66,5 @@ variable "scope_description" {
 
 variable "allowed_oauth_scopes" {
   description = "allowed oauth scopes"
+  default = [""]
 }
